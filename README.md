@@ -28,6 +28,8 @@ git clone https://github.com/markjasonespelita/zyphor_os.git
 ## Build
 
 ```bash
+cd zyphor_os
+
 ./build.sh --verbose
 ```
 
