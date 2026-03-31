@@ -2,11 +2,46 @@
 
 <channel name="xfce4-desktop" version="1.0">
   <property name="backdrop" type="empty">
+    
+    <!-- Main screen -->
     <property name="screen0" type="empty">
+      
+      <!-- Monitor 0 -->
       <property name="monitor0" type="empty">
+        
+        <!-- Your wallpaper -->
         <property name="image-path" type="string" value="/usr/share/backgrounds/backgrounds.jpeg" locked="true"/>
+        <property name="last-image" type="string" value="/usr/share/backgrounds/backgrounds.jpeg"/>
+        
+        <!-- Style -->
+        <!-- 0=centered, 1=tiled, 2=stretched, 3=scaled, 4=zoomed, 5=spanning -->
+        <property name="image-style" type="int" value="3"/>
+        
+        <!-- Color settings (fallback if no image) -->
+        <property name="color-style" type="int" value="0"/>
+        <property name="rgba1" type="array">
+          <value type="double" value="0.0"/>
+          <value type="double" value="0.0"/>
+          <value type="double" value="0.0"/>
+          <value type="double" value="1.0"/>
+        </property>
+        <property name="rgba2" type="array">
+          <value type="double" value="0.0"/>
+          <value type="double" value="0.0"/>
+          <value type="double" value="0.0"/>
+          <value type="double" value="1.0"/>
+        </property>
+
+      </property>
+
+      <!-- Optional: second monitor (safe default) -->
+      <property name="monitor1" type="empty">
+        <property name="image-path" type="string" value="/usr/share/backgrounds/backgrounds.jpeg"/>
+        <property name="last-image" type="string" value="/usr/share/backgrounds/backgrounds.jpeg"/>
         <property name="image-style" type="int" value="3"/>
       </property>
+
     </property>
+
   </property>
 </channel>
