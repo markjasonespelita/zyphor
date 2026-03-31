@@ -1,3 +1,10 @@
+## [0.0.6](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.5...v0.0.6) (2026-03-31)
+
+
+### Bug Fixes
+
+* replace everything into kali-config ([9b36a33](https://github.com/markjasonespelita/zyphor_os/commit/9b36a334b2ad86a7540ecf33637a75e4745f8a05))
+
 ## [0.0.5](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.4...v0.0.5) (2026-03-31)
 
 
