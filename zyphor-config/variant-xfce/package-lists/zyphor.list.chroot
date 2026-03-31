@@ -1,0 +1,10 @@
+## Live images always want these
+kali-linux-core
+kali-desktop-live
+
+kali-desktop-xfce
+
+## kali-linux-default
+
+## Calamares Installer
+calamares

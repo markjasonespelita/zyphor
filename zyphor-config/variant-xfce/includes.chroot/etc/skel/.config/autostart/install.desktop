@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Install Zyphor
+Exec=calamares
+Icon=system-installer
+X-GNOME-Autostart-enabled=true
