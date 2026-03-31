@@ -1,4 +1,9 @@
 ![Zyphor Logo](zyphor-config/variant-xfce/includes.chroot/etc/calamares/branding/zyphor/zyphor-full.png)
+by Mark Jason Penote Espelita
+Facebook: https://www.facebook.com/mark.jason.penote.espelita
+Email: markjasonespelita@gmail.com
+Contact: 09978972884 | 09203454006
+Created: March 30, 2026
 
 # Build-Scripts
 
@@ -85,3 +90,14 @@ You should see **kvm_intel** or **kvm_amd**
 ```bash
 sudo qemu-system-x86_64 --enable-kvm --cdrom <iso-name>.iso -m 2048
 ```
+
+# References
+
+Debian Official Website
+https://www.debian.org
+
+Kali Linux Official Website
+https://www.kali.org
+
+The Linux Kernel
+https://github.com/torvalds/linux
