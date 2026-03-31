@@ -1,3 +1,10 @@
+## [0.0.4](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.3...v0.0.4) (2026-03-31)
+
+
+### Bug Fixes
+
+* calamares installer config, logos and branding ([6c6cc57](https://github.com/markjasonespelita/zyphor_os/commit/6c6cc5704f544ca9ef121c8bd793d3931a14cfaf))
+
 ## [0.0.3](https://github.com/markjasonespelita/zyphor/compare/v0.0.2...v0.0.3) (2026-03-31)
 
 
