@@ -1,3 +1,5 @@
+![Zyphor Logo](zyphor-config/variant-xfce/includes.chroot/etc/calamares/branding/zyphor/zyphor-full.png)
+
 # Build-Scripts
 
 **Zyphor** is a custom Linux distribution built on top of the powerful foundations of **Kali Linux** and **Debian**.
