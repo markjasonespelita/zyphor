@@ -1,3 +1,10 @@
+## [0.0.10](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.9...v0.0.10) (2026-04-06)
+
+
+### Bug Fixes
+
+* added new wallpapers, replace the old small wallpaper, and configure the kali-config/variant-xfce/includes.chroot/etc/skel/.config/xfce/xfconf/xfce-perchannel-xml/xfce4-desktop.xml to match with the new background ([4d9cb5e](https://github.com/markjasonespelita/zyphor_os/commit/4d9cb5e8292483cbad0e79106cf8e56acbe69af8))
+
 ## [0.0.9](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.8...v0.0.9) (2026-04-06)
 
 
