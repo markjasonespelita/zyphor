@@ -1,3 +1,12 @@
+## [0.0.15](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.14...v0.0.15) (2026-04-07)
+
+
+### Bug Fixes
+
+* change menu title on live menu. ([98be193](https://github.com/markjasonespelita/zyphor_os/commit/98be19334eab308760602ffcb30e2f035580195c))
+* changed grub config menu entry branding. ([1a9c9e6](https://github.com/markjasonespelita/zyphor_os/commit/1a9c9e65f785008881e0a363e071b2a18c52f957))
+* changed splash screens (1200x896 and 640x480) images in pixels. ([d6cac25](https://github.com/markjasonespelita/zyphor_os/commit/d6cac258c7702c7c1929b78255b3f038cb0aa064))
+
 ## [0.0.14](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.13...v0.0.14) (2026-04-07)
 
 
