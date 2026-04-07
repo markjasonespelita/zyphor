@@ -7,11 +7,11 @@
 
 # Introduction
 
-**Zyphor** is a custom Linux distribution built on top of the powerful foundations of **Kali Linux** and **Debian**.
+**Zyphor OS** is a custom Linux distribution built on top of the powerful foundations of **Kali Linux** and **Debian**.
 
-Designed with simplicity, performance, and control in mind, **Zyphor** aims to deliver a streamlined operating system experience without unnecessary bloat.
+Designed with simplicity, performance, and control in mind, **Zyphor OS** aims to deliver a streamlined operating system experience without unnecessary bloat.
 
-One of **Zyphor**’s core goals is to provide a Windows-like user experience — making it easy for users transitioning from Windows to feel right at home. From layout and navigation to workflow and usability, **Zyphor** minimizes the learning curve while still offering the full power of Linux underneath.
+One of **Zyphor OS**’s core goals is to provide a Windows-like user experience — making it easy for users transitioning from Windows to feel right at home. From layout and navigation to workflow and usability, **Zyphor OS** minimizes the learning curve while still offering the full power of Linux underneath.
 
 # Build-Scripts
 
@@ -95,11 +95,61 @@ You should see **kvm_intel** or **kvm_amd**
 sudo qemu-system-x86_64 --enable-kvm --cdrom <iso-name>.iso -m 2048
 ```
 
-# 📚 References
+---
+
+## 📚 References
 
 - 🌐 [Debian Official Website](https://www.debian.org)
 - 🐉 [Kali Linux Official Website](https://www.kali.org)
 - 🧠 [The Linux Kernel (GitHub)](https://github.com/torvalds/linux)
+
+---
+
+## 📄 Attribution & Licensing
+
+**Zyphor OS** is a custom Linux distribution built on top of  
+**Debian** and **Kali Linux**.
+
+We gratefully acknowledge the work of the developers and communities behind these projects.
+
+- **Debian** provides the core system and package ecosystem.  
+- **Kali Linux**, developed by **Offensive Security**, provides security tools and system enhancements.
+
+---
+
+## ⚖️ License Notice
+
+**Zyphor OS** includes software packages distributed under various open-source licenses, including but not limited to:
+
+- **GNU** General Public License (GPL)  
+- **MIT License**  
+- **Apache License** 
+
+All original licenses remain in effect and are respected.
+
+You can find license details for individual packages in:
+
+```bash
+/usr/share/doc/
+```
+
+---
+
+## ⚠️ Disclaimer
+
+**Zyphor OS** is an independent project and is **not affiliated with, endorsed by, or sponsored by**:
+
+- **Kali Linux** 
+- **Offensive Security**  
+- **Debian**  
+
+All trademarks and registered trademarks are the property of their respective owners.
+
+---
+
+## 🤝 Contributions
+
+This project is open for contributions. Feel free to fork, modify, and submit pull requests.
 
 ---
 
