@@ -1,3 +1,10 @@
+## [0.0.16](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.15...v0.0.16) (2026-04-07)
+
+
+### Bug Fixes
+
+* change the default wallpapers and xfce-desktop xml configurations. ([1baf1a0](https://github.com/markjasonespelita/zyphor_os/commit/1baf1a0acd0207d2e05a673698a6846dd3084e5b))
+
 ## [0.0.15](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.14...v0.0.15) (2026-04-07)
 
 
