@@ -89,13 +89,35 @@ lsmod | grep kvm
 ```
 You should see **kvm_intel** or **kvm_amd**
 
-## ✅ Step 5: Test the ISO
+## ✅ Step 5: Test the ISO (Live Mode)
 
 ```bash
 sudo qemu-system-x86_64 --enable-kvm --cdrom <iso-name>.iso -m 2048
 ```
-
 ---
+## Create a persistent QEMU virtual disk
+
+```bash
+sudo qemu-img create -f qcow2 zyphor_test.qcow2 25G
+```
+## Load the ISO file inside the virtual disk
+
+```bash
+sudo qemu-system-x86_64 --cdrom <iso-name>.iso --hda zyphor_test.qcow2 --boot d -m 2048
+```
+
+## Boot virtual disk
+
+```bash
+sudo qemu-system-x86_64 --hda zyphor_test.qcow2 --boot c -m 2048
+```
+---
+
+## Delete virtual disk anytime
+
+```bash
+sudo rm -rf zyphor_test.qcow2 --verbose
+```
 
 ## 📚 References
 
