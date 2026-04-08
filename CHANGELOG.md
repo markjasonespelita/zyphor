@@ -1,3 +1,10 @@
+## [0.0.18](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.17...v0.0.18) (2026-04-08)
+
+
+### Bug Fixes
+
+* fixed plymouth settings.conf ([c3a8ba1](https://github.com/markjasonespelita/zyphor_os/commit/c3a8ba1d69a97064a1982eb1b1e048c29303e3a3))
+
 ## [0.0.17](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.16...v0.0.17) (2026-04-07)
 
 
