@@ -11,6 +11,40 @@
 # and build.sh copies it where required (in the simple-cdd configuration
 # and in the live-build configuration).
 
+# Zyphor OS Custom Post Install Configurations (1)
+
+configure_zyphor() {
+    echo "INFO: Applying Zyphor OS customizations"
+
+    # For lightdm gtk greeter - create /desktop-base folder inside /usr/share/images/[desktop-base]
+
+    mkdir /usr/share/images/desktop-base
+
+    # create symlink
+
+    ln -s /usr/share/backgrounds/zyphor/backgrounds.png /usr/share/images/desktop-base/default
+
+    # For GRUB Bootloader - create a folder /boot/zyphor
+
+    mkdir /boot/zyphor
+
+    # copy main GRUB Bootloader splash screen (can be .gif format in the future)
+
+    cp /usr/share/backgrounds/zyphor/backgrounds.png /boot/zyphor
+
+    # rename default GRUB Bootloader Image
+
+    mv /boot/zyphor/backgrounds.png /boot/zyphor/splash.png
+
+    # update GRUB Bootloader Settings
+
+    update-grub
+
+    # plymouth - to be continue...
+}
+
+# End Of Zyphor OS Custom Post Install Configurations (2)
+
 configure_sources_list() {
     if grep -q '^deb ' /etc/apt/sources.list; then
         echo "INFO: sources.list is configured, everything is fine"
@@ -101,3 +135,9 @@ configure_sources_list
 configure_zsh
 configure_usergroups
 configure_terminal
+
+# Zyphor OS Custom Post Install Configurations (2)
+
+configure_zyphor
+
+# End Of Zyphor OS Custom Post Install Configurations (2)
