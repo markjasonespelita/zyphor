@@ -1,3 +1,10 @@
+## [0.0.23](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.22...v0.0.23) (2026-04-09)
+
+
+### Bug Fixes
+
+* added boot/zyphor theme for splash screen, default grub bootleader configuration, and lightdm greeter for the default screen saver of the zyphor os. ([775e740](https://github.com/markjasonespelita/zyphor_os/commit/775e740baab1cec3f2cdcee3212eae8741e10636))
+
 ## [0.0.22](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.21...v0.0.22) (2026-04-09)
 
 
