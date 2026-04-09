@@ -2,12 +2,12 @@
 screen_width = Window.GetWidth();
 screen_height = Window.GetHeight();
 
-// Background color (dark)
+// Background color
 Window.SetBackgroundTopColor(0.05, 0.05, 0.07);
 Window.SetBackgroundBottomColor(0.05, 0.05, 0.07);
 
 // Load logo
-logo_image = Image("logo.png");
+load_image = Image('zyphor.png');
 logo_sprite = Sprite(logo_image);
 
 // Center the logo
@@ -16,40 +16,11 @@ logo_y = (screen_height - logo_image.GetHeight()) / 2 - 40;
 
 logo_sprite.SetX(logo_x);
 logo_sprite.SetY(logo_y);
-logo_sprite.SetOpacity(0);
+logo_sprite.SetOpacity(1);
 
-// Fade-in animation
-opacity = 0.0;
-
-fun fade_in_callback ()
+fun displayLogo ()
 {
-    if (opacity < 1.0)
-    {
-        opacity += 0.02;
-        logo_sprite.SetOpacity(opacity);
-    }
+    logo_sprite.SetOpacity(1);
 }
 
-Plymouth.SetRefreshFunction(fade_in_callback);
-
-// Simple spinner (dots)
-dots = "";
-count = 0;
-
-fun progress_callback ()
-{
-    count++;
-
-    if (count % 20 == 0)
-    {
-        if (dots == "...")
-            dots = "";
-        else
-            dots += ".";
-    }
-
-    message = "Starting Zyphor OS" + dots;
-    Plymouth.SetMessage(message);
-}
-
-Plymouth.SetRefreshFunction(progress_callback);
+Plymouth.SetRefreshFunction(displayLogo);

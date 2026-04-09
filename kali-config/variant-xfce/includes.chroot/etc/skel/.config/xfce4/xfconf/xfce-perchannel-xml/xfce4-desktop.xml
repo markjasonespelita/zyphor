@@ -42,7 +42,7 @@
       </property>
       <property name="monitoreDP-1" type="empty">
         <property name="workspace0" type="empty">
-          <property name="last-image" type="string" value="/usr/share/backgrounds/backgrounds.png"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/zyphor/backgrounds.png"/>
           <property name="color-style" type="int" value="1"/>
           <property name="image-style" type="int" value="3"/>
         </property>
