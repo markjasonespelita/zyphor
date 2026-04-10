@@ -24,6 +24,10 @@ configure_zyphor() {
 
     ln -s /usr/share/backgrounds/backgrounds.png /usr/share/images/desktop-base/default
 
+    # lightdm .face symlink
+
+    ln -s /etc/skel/.face /etc/skel/.face.icon
+
     # For GRUB Bootloader - create a folder /boot/zyphor
 
     mkdir /boot/zyphor
