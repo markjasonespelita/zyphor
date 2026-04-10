@@ -1,3 +1,10 @@
+## [0.0.26](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.25...v0.0.26) (2026-04-10)
+
+
+### Bug Fixes
+
+* added /doc directory for documentation. ([33c9905](https://github.com/markjasonespelita/zyphor_os/commit/33c990525e7492e437fae27d4e805c4c37570aeb))
+
 ## [0.0.25](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.24...v0.0.25) (2026-04-10)
 
 
