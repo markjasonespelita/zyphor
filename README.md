@@ -188,7 +188,46 @@ is not permitted without explicit permission.
 
 ## 🤝 Contributions
 
-This project is open for contributions. Feel free to fork, modify, and submit pull requests.
+This project is open for contributions.
+
+You are free to fork the project, make changes, and submit pull requests.
+
+**🌐 For Web Developers (Documentation Contributors)**
+
+If you are contributing to the documentation:
+
+- Focus only on files inside the `/docs` directory
+- Improve clarity, structure, and readability of existing content
+- Add new guides, tutorials, or explanations when needed
+- Ensure all commands and instructions are tested and accurate
+- Follow consistent formatting (Markdown structure, headings, code blocks)
+
+⚠️ Please avoid modifying system files, build scripts, or configurations unless explicitly requested.
+
+**🛠️ For Distribution Developers (System Contributors)**
+
+If you are working on the system itself:
+
+- You are free to modify configurations, packages, and system behavior
+- You may improve build scripts, performance, and overall system design
+- You can propose new features, optimizations, or enhancements
+- Ensure your changes are stable, tested, and do not break core functionality
+
+**📌 General Guidelines**
+
+- Keep commits clean and descriptive
+- Follow the existing project structure
+- Test your changes before submitting
+- Be respectful and constructive in discussions
+
+**🚀 Pull Request Process**
+
+- Fork the repository
+Create a new branch for your changes
+- Make your modifications
+- Submit a pull request with a clear description
+
+All contributions will be reviewed before merging.
 
 ---
 
