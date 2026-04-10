@@ -1,3 +1,10 @@
+## [0.0.25](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.24...v0.0.25) (2026-04-10)
+
+
+### Bug Fixes
+
+* moved /backgrounds/zyphor image backgrounds to /backgrounds folder, added a new folder inside /backgrounds - zyphor-grub-bootloader-screensavers, mirrored the /etc/skel/conf to /etc/xdg folder, removed calamares installer as default pre-installed installer on the packages list, deleted calamares system configuration o both /etc and /usr folders, odified xfce4 desktop xml configurations - must point to /usr/share/backgrounds folder, modified kali-finish-install configuration - must apply the latest folder structure changes, modified the readme.md - must point the showcase image to /usr/share/backgrounds/zyphor-grub-bootloader-screensavers/zyphor-full.png. ([90fbc4d](https://github.com/markjasonespelita/zyphor_os/commit/90fbc4d9d1bee0f3d9eaac40b26a43b548373cc4))
+
 ## [0.0.24](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.23...v0.0.24) (2026-04-09)
 
 
