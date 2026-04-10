@@ -111,13 +111,14 @@ sudo qemu-system-x86_64 --enable-kvm --cdrom <iso-name>.iso --hda zyphor_test.qc
 ```bash
 sudo qemu-system-x86_64 --hda zyphor_test.qcow2 --boot c -m 2048
 ```
----
 
 ## Delete virtual disk anytime
 
 ```bash
 sudo rm -rf zyphor_test.qcow2 --verbose
 ```
+
+---
 
 ## 📚 References
 
@@ -139,33 +140,49 @@ We gratefully acknowledge the work of the developers and communities behind thes
 
 ---
 
-## ⚖️ License Notice
+## 📜 License
+
+**Zyphor OS**-specific configurations, scripts, and customizations are licensed under the MIT License.
+
+You are free to use, modify, and distribute **Zyphor OS** components under the terms of this license.
+
+---
+
+## ⚖️ Third-Party Software
 
 **Zyphor OS** includes software packages distributed under various open-source licenses, including but not limited to:
 
-- **GNU** General Public License (GPL)  
-- **MIT License**  
-- **Apache License** 
+- **GNU General Public License (GPL)** 
+- **MIT License**
+- **Apache License**
 
-All original licenses remain in effect and are respected.
+All original licenses remain in effect and are fully respected.
 
-You can find license details for individual packages in:
+License details for individual packages can be found in:
 
 ```bash
-/usr/share/doc/
+/usr/share/doc/*/copyright
 ```
-
 ---
 
 ## ⚠️ Disclaimer
 
-**Zyphor OS** is an independent project and is **not affiliated with, endorsed by, or sponsored by**:
+**Zyphor OS** is an independent project and is not affiliated with, endorsed by, or sponsored by:
 
-- **Kali Linux** 
-- **Offensive Security**  
-- **Debian**  
+**Debian**
+**Kali Linux**
+**Offensive Security**
 
 All trademarks and registered trademarks are the property of their respective owners.
+
+---
+
+## 🛡️ Branding
+
+The name **"Zyphor OS"** and its logo are the property of the creator.
+
+Redistribution of modified versions using the **Zyphor OS** name or branding
+is not permitted without explicit permission.
 
 ---
 
