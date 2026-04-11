@@ -38,7 +38,7 @@ configure_zyphor() {
 
     mkdir /boot/zyphor
 
-    # copy main GRUB Bootloader splash screen (can be .gif format in the future)
+    # copy main GRUB Bootloader splash screen
 
     cp /usr/share/backgrounds/zyphor-grub-bootloader-screensavers/grub-bootloader-screen-saver.png /boot/zyphor
 
