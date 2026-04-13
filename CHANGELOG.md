@@ -1,3 +1,12 @@
+## [0.0.29](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.28...v0.0.29) (2026-04-13)
+
+
+### Bug Fixes
+
+* added contributors folder to welcome students, beginners and enthusiast enter the world of open source. ([ba6e015](https://github.com/markjasonespelita/zyphor_os/commit/ba6e015386b33cea96b7129579b47be0e503ce45))
+* modified the kali-finish-install - created a symlink on the default wallpapers to the desktop-base folder. ([780dd8c](https://github.com/markjasonespelita/zyphor_os/commit/780dd8c2d0a13965df1664658e51af7b2e1b50ae))
+* replace .face on the /etc/skel/.face path with more modern and precise image. ([5453bd3](https://github.com/markjasonespelita/zyphor_os/commit/5453bd317d04e064f002a8b1097cebc4e6f91c50))
+
 ## [0.0.28](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.27...v0.0.28) (2026-04-11)
 
 
