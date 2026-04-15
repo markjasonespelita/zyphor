@@ -1,3 +1,10 @@
+## [0.0.37](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.36...v0.0.37) (2026-04-15)
+
+
+### Bug Fixes
+
+* replaced the /includes installer usr share graphics logo debian banner with much larger width banner, but its still the same image. ([c6cc967](https://github.com/markjasonespelita/zyphor_os/commit/c6cc96744e970f6a11635648a89cf3563579bfc0))
+
 ## [0.0.36](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.35...v0.0.36) (2026-04-15)
 
 
