@@ -1,3 +1,10 @@
+## [0.0.36](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.35...v0.0.36) (2026-04-15)
+
+
+### Bug Fixes
+
+* replace = separator on the /boot/grub/themes/kali/themes.txt ([2bdc9c6](https://github.com/markjasonespelita/zyphor_os/commit/2bdc9c61b26ca76c73f774b6711921e341ed481a))
+
 ## [0.0.35](https://github.com/markjasonespelita/zyphor_os/compare/v0.0.34...v0.0.35) (2026-04-15)
 
 
