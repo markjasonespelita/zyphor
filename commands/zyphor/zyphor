@@ -1,0 +1,15 @@
+#!/bin/bash
+
+case "$1" in
+  upgrade-everything)
+    apt update && apt upgrade -y
+    apt autoremove -y
+    echo "System fully upgraded."
+    ;;
+  clean-everything)
+    apt autoremove -y && apt autoclean
+    ;;
+  *)
+    echo "Unknown command"
+    ;;
+esac

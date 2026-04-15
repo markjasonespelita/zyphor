@@ -54,6 +54,9 @@ configure_zyphor() {
     update-grub
 
     # plymouth - to be continue...
+
+    # zyphor commands copy by force to /usr/local/bin - to be continue...
+    
 }
 
 # End Of Zyphor OS Custom Post Install Configurations (2)
