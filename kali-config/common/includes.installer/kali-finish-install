@@ -37,6 +37,10 @@ configure_zyphor() {
 
     ln -sf /etc/skel/.face /etc/skel/.face.icon
 
+    # Zyphor Custom Commands configurations
+
+    
+
     # For GRUB Bootloader - create a folder /boot/zyphor
 
     mkdir -p /boot/zyphor
