@@ -53,26 +53,6 @@ One of **Zyphor OS**’s core goals is to provide a Windows-like user experience
 
 ---
 
-# Build-Scripts
-
-## Packages and Initialization
-
-```bash
-sudo apt update
-
-sudo apt install -y git live-build simple-cdd cdebootstrap curl
-
-git clone https://github.com/markjasonespelita/zyphor_os.git
-```
-
-## Build
-
-```bash
-cd zyphor_os
-
-./build.sh --verbose
-```
-
 ## Virtual Machine For Testing (QEMU System x86_64)
 
 ```bash
