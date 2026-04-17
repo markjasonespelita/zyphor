@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# zyphor pkg remove <package-name>
+
+zyphor_pkg_remove() {
+  PKG="$3"
+
+  # ===== Validate input =====
+  if [ -z "$PKG" ]; then
+    echo ""
+    echo "Zyphor: ✖ Missing package name"
+    echo "Usage: zyphor pkg remove <package>"
+    echo ""
+    return 1
+  fi
+
+  # ===== Check root =====
+  if [ "$EUID" -ne 0 ]; then
+    echo ""
+    echo "Zyphor: ⚠ This action requires root privileges"
+    echo "Try: sudo zyphor pkg remove $PKG"
+    echo ""
+    return 1
+  fi
+
+  # ===== Check if installed =====
+  if ! dpkg -l | grep -q "^ii  $PKG "; then
+    echo ""
+    echo "Zyphor: ⚠ Package '$PKG' is not installed"
+    echo ""
+    return 0
+  fi
+
+  # ===== Confirm removal (safety layer) =====
+  echo ""
+  read -p "Zyphor: Are you sure you want to remove '$PKG'? [y/N]: " CONFIRM
+  case "$CONFIRM" in
+    y|Y) ;;
+    *)
+      echo "Zyphor: Cancelled."
+      echo ""
+      return 0
+      ;;
+  esac
+
+  # ===== Remove package =====
+  echo ""
+  echo "Zyphor: Removing '$PKG'..."
+  if apt remove -y "$PKG"; then
+    echo ""
+    echo "Zyphor: ✔ SUCCESS"
+    echo "Package '$PKG' removed."
+    
+    # ===== Optional cleanup =====
+    echo ""
+    read -p "Zyphor: Run autoremove for unused dependencies? [y/N]: " AUTO
+    if [[ "$AUTO" =~ ^[yY]$ ]]; then
+      apt autoremove -y
+      echo "Zyphor: ✔ Cleanup complete"
+    fi
+
+    echo ""
+  else
+    echo ""
+    echo "Zyphor: ✖ FAILED"
+    echo "Could not remove '$PKG'."
+    echo ""
+    return 1
+  fi
+}

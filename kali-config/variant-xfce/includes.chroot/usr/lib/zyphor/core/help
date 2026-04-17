@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# zyphor help (core)
+
+help() {
+
+  COMMANDS=(
+    # SYSTEM
+    "system upgrade|Upgrade all system packages to latest versions"
+    "system clean|Remove unused packages and clean cache"
+
+    # PACKAGE
+    "pkg install <package>|Install a package"
+    "pkg remove <package>|Remove a package"
+
+    # CORE
+    "help|Show available Zyphor commands"
+    "version|Show Zyphor OS build version"
+  )
+
+  echo ""
+  echo "=================================="
+  echo "        Zyphor OS CLI"
+  echo "=================================="
+  echo ""
+
+  echo "COMMANDS"
+  echo "----------------------------------"
+
+  for cmd in "${COMMANDS[@]}"; do
+    NAME="${cmd%%|*}"
+    DESC="${cmd##*|}"
+
+    printf "  %-25s %s\n" "$NAME" "$DESC"
+  done
+
+  echo ""
+  echo "EXAMPLES"
+  echo "----------------------------------"
+  echo "  zyphor system upgrade"
+  echo "  zyphor pkg install nginx"
+  echo "  zyphor pkg remove curl"
+  echo ""
+
+  echo "=================================="
+  echo ""
+}

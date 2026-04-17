@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# zyphor system upgrade
+
+zyphor_system_upgrade() {
+
+  # ===== Check root =====
+  if [ "$EUID" -ne 0 ]; then
+    echo ""
+    echo "Zyphor: ⚠ This action requires root privileges"
+    echo "Try: sudo zyphor system upgrade"
+    echo ""
+    return 1
+  fi
+
+  echo ""
+  echo "Zyphor: Starting system upgrade process..."
+
+  # ===== Step 1: Update package list =====
+  echo ""
+  echo "Zyphor: [1/4] Updating package lists..."
+  if ! apt update -qq; then
+    echo "Zyphor: ✖ Failed to update package lists"
+    return 1
+  fi
+
+  # ===== Step 2: Full upgrade =====
+  echo "Zyphor: [2/4] Performing full upgrade..."
+  if ! apt full-upgrade -y; then
+    echo "Zyphor: ✖ Full upgrade failed"
+    return 1
+  fi
+
+  # ===== Step 3: Standard upgrade (safety fallback) =====
+  echo "Zyphor: [3/4] Running standard upgrade check..."
+  apt upgrade -y
+
+  # ===== Step 4: Cleanup =====
+  echo "Zyphor: [4/4] Cleaning system..."
+  apt autoremove -y
+  apt clean
+
+  # ===== Done =====
+  echo ""
+  echo "Zyphor: ✔ SYSTEM UPGRADE COMPLETE"
+  echo "Your system is now up to date and optimized."
+  echo ""
+}

@@ -1,24 +1,41 @@
 #!/bin/bash
 
-# ===== Zyphor OS Command Registry =====
+# Core
+source /usr/lib/zyphor/core/help
+source /usr/lib/zyphor/core/version
+source /usr/lib/zyphor/core/error
 
-source /usr/lib/zyphor/commands/show-help # zyphor help
-source /usr/lib/zyphor/version/display-version # zyphor version
-source /usr/lib/zyphor/err/error # <error>
+CATEGORY="$1"
+ACTION="$2"
 
-source /usr/lib/zyphor/clean-everything # zyphor clean-everything
-source /usr/lib/zyphor/install-package # zyphor install <package-name>
-source /usr/lib/zyphor/remove-package # zyphor remove <package-name>
-source /usr/lib/zyphor/upgrade-everything # zyphor upgrade-everything
+case "$CATEGORY" in
 
-# ===== Command Router =====
+  pkg)
+    # PKG (package management)
+    source /usr/lib/zyphor/pkg/install
+    source /usr/lib/zyphor/pkg/remove
 
-case "$1" in
-  version) display_version ;;
-  remove) remove_package "$@" ;;
-  upgrade-everything) upgrade_everything ;;
-  clean-everything) clean_everything ;;
-  install) install_package "$@" ;;
-  help|"") show_help ;;
-  *) error ;;
+    case "$ACTION" in
+      install) zyphor_pkg_install "$@" ;;   # zyphor pkg install <package-name>
+      remove) zyphor_pkg_remove "$@" ;;     # zyphor pkg remove <package-name>
+      *) error "$CATEGORY $ACTION" ;;
+    esac
+    ;;
+
+  system)
+    # System
+    source /usr/lib/zyphor/system/upgrade
+    source /usr/lib/zyphor/system/clean
+
+    case "$ACTION" in
+      upgrade) zyphor_system_upgrade ;;     # zyphor system upgrade
+      clean) zyphor_system_clean ;;         # zyphor system clean
+      *) error "$CATEGORY $ACTION" ;;
+    esac
+    ;;
+
+  version) version ;;                       # zyphor version
+  help|"") help ;;                          # zyphor help
+  *) error "$1" ;;
+
 esac
