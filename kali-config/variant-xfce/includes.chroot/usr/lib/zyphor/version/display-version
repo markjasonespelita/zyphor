@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# zyphor version
+
+build_version='v1.0.0 Beta.'
+
+display_version() {
+  echo ""
+  echo "Zyphor OS Build Version $build_version"
+  echo ""
+}

@@ -1,121 +1,24 @@
 #!/bin/bash
 
 # ===== Zyphor OS Command Registry =====
-# Format:
-# command_name|description
 
-build_version='v1.0.0 Beta.'
+source /usr/lib/zyphor/commands/show-help # zyphor help
+source /usr/lib/zyphor/version/display-version # zyphor version
+source /usr/lib/zyphor/err/error # <error>
 
-COMMANDS=(
-  "upgrade-everything|Upgrade all system packages to latest versions"
-  "clean-everything|Remove unused packages and clean cache"
-  "install|Install a package (usage: zyphor install <package-name>)"
-  "help|Show available Zyphor commands"
-  "remove|Remove a package (usage: zyphor remove <package-name>)"
-  "version|Dispay latest Zyphor OS build version"
-)
-
-# ===== Functions =====
-
-display_version() {
-  echo ""
-  echo "Zyphor OS Build Version $build_version"
-  echo ""
-}
-
-remove_package() {
-  if [ -z "$2" ]; then
-    echo "Zyphor OS: ✖ ERROR"
-    echo "Usage: zyphor remove <package-name>"
-    exit 1
-  fi
-
-  apt remove -y "$2"
-
-  echo ""
-  echo "Zyphor OS: ✔ SUCCESS"
-  echo "Package '$2' removed."
-  echo ""
-}
-
-upgrade_everything() {
-  apt update &&
-  apt full-upgrade -y &&
-  apt upgrade -y &&
-  apt autoremove -y
-
-  echo ""
-  echo "Zyphor OS: ✔ SUCCESS"
-  echo "System fully upgraded and optimized."
-  echo ""
-}
-
-clean_everything() {
-  apt autoremove -y &&
-  apt clean
-
-  echo ""
-  echo "Zyphor OS: ✔ SUCCESS"
-  echo "System cleaned and unnecessary files removed."
-  echo ""
-}
-
-install_package() {
-  if [ -z "$2" ]; then
-    echo "Zyphor OS: ✖ ERROR"
-    echo "Usage: zyphor install <package-name>"
-    exit 1
-  fi
-
-  apt update &&
-  apt install -y "$2"
-
-  echo ""
-  echo "Zyphor OS: ✔ DONE"
-  echo "Package '$2' done."
-  echo ""
-}
-
-show_help() {
-  echo ""
-  echo "Zyphor OS Command List"
-  echo "----------------------"
-
-  for cmd in "${COMMANDS[@]}"; do
-    NAME=$(echo "$cmd" | cut -d '|' -f1)
-    DESC=$(echo "$cmd" | cut -d '|' -f2)
-
-    printf "  %-20s %s\n" "$NAME" "$DESC"
-  done
-
-  echo ""
-}
+source /usr/lib/zyphor/clean-everything # zyphor clean-everything
+source /usr/lib/zyphor/install-package # zyphor install <package-name>
+source /usr/lib/zyphor/remove-package # zyphor remove <package-name>
+source /usr/lib/zyphor/upgrade-everything # zyphor upgrade-everything
 
 # ===== Command Router =====
 
 case "$1" in
-  version)
-    display_version
-    ;;
-  remove)
-    remove_package "$@"
-    ;;
-  upgrade-everything)
-    upgrade_everything
-    ;;
-  clean-everything)
-    clean_everything
-    ;;
-  install)
-    install_package "$@"
-    ;;
-  help|"")
-    show_help
-    ;;
-  *)
-    echo ""
-    echo "Zyphor OS: ✖ Unknown command '$1'"
-    echo "Run 'zyphor help' to see available commands."
-    echo ""
-    ;;
+  version) display_version ;;
+  remove) remove_package "$@" ;;
+  upgrade-everything) upgrade_everything ;;
+  clean-everything) clean_everything ;;
+  install) install_package "$@" ;;
+  help|"") show_help ;;
+  *) error ;;
 esac

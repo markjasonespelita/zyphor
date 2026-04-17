@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# zyphor clean-everything
+
+clean_everything() {
+  apt autoremove -y &&
+  apt clean
+
+  echo ""
+  echo "Zyphor OS: ✔ SUCCESS"
+  echo "System cleaned and unnecessary files removed."
+  echo ""
+}

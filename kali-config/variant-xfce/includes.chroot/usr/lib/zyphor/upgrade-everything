@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# zyphor upgrade-everything
+
+upgrade_everything() {
+  apt update &&
+  apt full-upgrade -y &&
+  apt upgrade -y &&
+  apt autoremove -y
+
+  echo ""
+  echo "Zyphor OS: ✔ SUCCESS"
+  echo "System fully upgraded and optimized."
+  echo ""
+}
