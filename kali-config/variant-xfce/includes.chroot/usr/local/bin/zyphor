@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Core
+# ================= CORE =================
 source /usr/lib/zyphor/core/help
 source /usr/lib/zyphor/core/version
 source /usr/lib/zyphor/core/error
@@ -10,32 +10,69 @@ ACTION="$2"
 
 case "$CATEGORY" in
 
+  # ================= PKG =================
   pkg)
-    # PKG (package management)
     source /usr/lib/zyphor/pkg/install
     source /usr/lib/zyphor/pkg/remove
+    source /usr/lib/zyphor/pkg/list
+    source /usr/lib/zyphor/pkg/search
 
     case "$ACTION" in
-      install) zyphor_pkg_install "$@" ;;   # zyphor pkg install <package-name>
-      remove) zyphor_pkg_remove "$@" ;;     # zyphor pkg remove <package-name>
-      *) error "$CATEGORY $ACTION" ;;
+      install) zyphor_pkg_install "$@" ;;
+      remove)  zyphor_pkg_remove "$@" ;;
+      list)    zyphor_pkg_list "$@" ;;
+      search)  zyphor_pkg_search "$@" ;;
+      *) error "pkg $ACTION" ;;
     esac
     ;;
 
+  # ================= SERVICE =================
+  service)
+    source /usr/lib/zyphor/service/list
+    source /usr/lib/zyphor/service/start
+    source /usr/lib/zyphor/service/stop
+    source /usr/lib/zyphor/service/restart
+    source /usr/lib/zyphor/service/status
+
+    case "$ACTION" in
+      list)    zyphor_service_list "$@" ;;
+      start)   zyphor_service_start "$@" ;;
+      stop)    zyphor_service_stop "$@" ;;
+      restart) zyphor_service_restart "$@" ;;
+      status)  zyphor_service_status "$@" ;;
+      *) error "service $ACTION" ;;
+    esac
+    ;;
+
+  # ================= DOCTOR =================
+  doctor)
+    source /usr/lib/zyphor/doctor/fix
+    source /usr/lib/zyphor/doctor/report
+    source /usr/lib/zyphor/doctor/scan
+
+    case "$ACTION" in
+      fix)    zyphor_doctor_fix "$@" ;;
+      report) zyphor_doctor_report "$@" ;;
+      scan)   zyphor_doctor_scan "$@" ;;
+      *) error "doctor $ACTION" ;;
+    esac
+    ;;
+
+  # ================= SYSTEM =================
   system)
-    # System
     source /usr/lib/zyphor/system/upgrade
     source /usr/lib/zyphor/system/clean
 
     case "$ACTION" in
-      upgrade) zyphor_system_upgrade ;;     # zyphor system upgrade
-      clean) zyphor_system_clean ;;         # zyphor system clean
-      *) error "$CATEGORY $ACTION" ;;
+      upgrade) zyphor_system_upgrade ;;
+      clean)   zyphor_system_clean ;;
+      *) error "system $ACTION" ;;
     esac
     ;;
 
-  version) version ;;                       # zyphor version
-  help|"") help ;;                          # zyphor help
-  *) error "$1" ;;
+  # ================= META =================
+  version) version ;;
+  help|"") help ;;
+  *) error "$CATEGORY" ;;
 
 esac
