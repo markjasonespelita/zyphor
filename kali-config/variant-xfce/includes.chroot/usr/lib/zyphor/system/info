@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# zyphor system info
+
+zyphor_system_info() {
+
+  echo ""
+  echo "Zyphor: Gathering system information..."
+  echo ""
+
+  # ===== OS Info =====
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    echo "OS: $PRETTY_NAME"
+  else
+    echo "OS: Unknown"
+  fi
+
+  # ===== Kernel =====
+  echo "Kernel: $(uname -r)"
+
+  # ===== Uptime =====
+  echo "Uptime: $(uptime -p)"
+
+  # ===== CPU =====
+  CPU=$(grep -m 1 "model name" /proc/cpuinfo | cut -d: -f2 | xargs)
+  echo "CPU: $CPU"
+
+  # ===== Memory =====
+  MEM_TOTAL=$(free -m | awk '/Mem:/ {print $2}')
+  MEM_USED=$(free -m | awk '/Mem:/ {print $3}')
+  echo "Memory: ${MEM_USED}MB / ${MEM_TOTAL}MB"
+
+  # ===== Disk =====
+  DISK=$(df -h / | awk 'NR==2 {print $3 " / " $2 " (" $5 ")"}')
+  echo "Disk (/): $DISK"
+
+  # ===== Packages =====
+  PKG_COUNT=$(dpkg -l | grep '^ii' | wc -l)
+  echo "Packages: $PKG_COUNT"
+
+  # ===== Shell =====
+  echo "Shell: $SHELL"
+
+  # ===== User =====
+  echo "User: $(whoami)"
+
+  # ===== Hostname =====
+  echo "Host: $(hostname)"
+
+  echo ""
+  echo "Zyphor: ✔ INFO READY"
+  echo ""
+}

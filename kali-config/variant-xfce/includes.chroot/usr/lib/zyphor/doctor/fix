@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# zyphor doctor fix
+
+zyphor_doctor_fix() {
+
+  # ===== Root check =====
+  if [ "$EUID" -ne 0 ]; then
+    echo ""
+    echo "Zyphor: ⚠ Doctor fix requires root privileges"
+    echo "Try: sudo zyphor doctor fix"
+    echo ""
+    return 1
+  fi
+
+  echo ""
+  echo "Zyphor Doctor: Running system repair..."
+  echo ""
+
+  FIXED=0
+
+  # ===== Fix broken dependencies =====
+  echo "Zyphor Doctor: Checking broken dependencies..."
+  if dpkg --configure -a >/dev/null 2>&1; then
+    echo " - Configured pending packages"
+    FIXED=$((FIXED + 1))
+  fi
+
+  if apt --fix-broken install -y >/dev/null 2>&1; then
+    echo " - Fixed broken dependencies"
+    FIXED=$((FIXED + 1))
+  fi
+
+  # ===== Clean partial packages =====
+  echo "Zyphor Doctor: Cleaning partial packages..."
+  if dpkg -l | awk '/^rc/ {print $2}' | xargs -r apt purge -y >/dev/null 2>&1; then
+    echo " - Removed residual configs"
+    FIXED=$((FIXED + 1))
+  fi
+
+  # ===== Clean APT cache =====
+  echo "Zyphor Doctor: Cleaning package cache..."
+  if apt clean >/dev/null 2>&1; then
+    echo " - Cleaned package cache"
+    FIXED=$((FIXED + 1))
+  fi
+
+  # ===== Fix permissions (safe example) =====
+  if [ -d "$HOME/.cache" ]; then
+    chown -R $SUDO_USER:$SUDO_USER "$HOME/.cache" >/dev/null 2>&1
+    echo " - Fixed user cache permissions"
+    FIXED=$((FIXED + 1))
+  fi
+
+  echo ""
+  if [ "$FIXED" -gt 0 ]; then
+    echo "Zyphor Doctor: ✔ SYSTEM REPAIRED ($FIXED fixes applied)"
+  else
+    echo "Zyphor Doctor: ✔ SYSTEM OK (no fixes needed)"
+  fi
+
+  echo ""
+}

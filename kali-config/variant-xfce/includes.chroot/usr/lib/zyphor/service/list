@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# zyphor service list
+
+zyphor_service_list() {
+
+  echo ""
+  echo "Zyphor: Listing system services..."
+  echo ""
+
+  # ===== Header =====
+  printf "%-40s %-10s %-10s\n" "SERVICE" "STATE" "ENABLED"
+  echo "--------------------------------------------------------------"
+
+  # ===== Get services =====
+  systemctl list-unit-files --type=service | while read -r line; do
+
+    SERVICE=$(echo "$line" | awk '{print $1}')
+    STATE=$(echo "$line" | awk '{print $2}')
+
+    # Skip header lines
+    if [[ "$SERVICE" == "UNIT" || "$SERVICE" == "unit" ]]; then
+      continue
+    fi
+
+    # Get active status
+    ACTIVE=$(systemctl is-active "$SERVICE" 2>/dev/null)
+
+    # Clean output
+    if [ "$ACTIVE" = "active" ]; then
+      STATUS="RUNNING"
+    else
+      STATUS="STOPPED"
+    fi
+
+    printf "%-40s %-10s %-10s\n" "$SERVICE" "$STATUS" "$STATE"
+
+  done
+
+  echo ""
+  echo "Zyphor: ✔ Service list complete"
+  echo ""
+}

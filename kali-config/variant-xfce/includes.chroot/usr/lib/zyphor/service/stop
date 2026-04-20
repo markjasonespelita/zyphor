@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# zyphor service stop <service>
+
+zyphor_service_stop() {
+
+  SERVICE="$3"
+
+  if [ -z "$SERVICE" ]; then
+    echo ""
+    echo "Zyphor: ✖ Missing service name"
+    echo "Usage: zyphor service stop <service>"
+    echo ""
+    return 1
+  fi
+
+  if [ "$EUID" -ne 0 ]; then
+    echo ""
+    echo "Zyphor: ⚠ Requires root privileges"
+    echo "Try: sudo zyphor service stop $SERVICE"
+    echo ""
+    return 1
+  fi
+
+  echo ""
+  echo "Zyphor: Stopping '$SERVICE'..."
+
+  if systemctl stop "$SERVICE"; then
+    echo "Zyphor: ✔ '$SERVICE' stopped successfully"
+  else
+    echo "Zyphor: ✖ Failed to stop '$SERVICE'"
+  fi
+
+  echo ""
+}

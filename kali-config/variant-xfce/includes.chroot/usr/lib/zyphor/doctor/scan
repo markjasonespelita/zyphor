@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# zyphor doctor scan
+
+zyphor_doctor_scan() {
+
+  echo ""
+  echo "Zyphor Doctor: Scanning system health..."
+  echo ""
+
+  ISSUES=0
+
+  # ===== APT broken packages =====
+  echo "Checking package system..."
+  BROKEN=$(dpkg --audit)
+
+  if [ -n "$BROKEN" ]; then
+    echo " ⚠ Broken packages detected"
+    echo "$BROKEN"
+    ISSUES=$((ISSUES + 1))
+  else
+    echo " ✔ Package system OK"
+  fi
+
+  # ===== Unconfigured packages =====
+  UNCONFIG=$(dpkg -l | awk '/^iU|^iF/ {print $2}')
+
+  if [ -n "$UNCONFIG" ]; then
+    echo " ⚠ Unconfigured packages found"
+    echo "$UNCONFIG"
+    ISSUES=$((ISSUES + 1))
+  else
+    echo " ✔ No unconfigured packages"
+  fi
+
+  # ===== Disk space =====
+  echo ""
+  echo "Checking disk usage..."
+
+  USAGE=$(df / | awk 'NR==2 {print $5}' | tr -d '%')
+
+  if [ "$USAGE" -gt 85 ]; then
+    echo " ⚠ Low disk space: ${USAGE}% used"
+    ISSUES=$((ISSUES + 1))
+  else
+    echo " ✔ Disk usage normal (${USAGE}%)"
+  fi
+
+  # ===== Memory check =====
+  echo ""
+  echo "Checking memory..."
+
+  MEM_FREE=$(free -m | awk '/Mem:/ {printf "%.0f", $7}')
+
+  if [ "$MEM_FREE" -lt 200 ]; then
+    echo " ⚠ Low available memory: ${MEM_FREE}MB"
+    ISSUES=$((ISSUES + 1))
+  else
+    echo " ✔ Memory usage OK"
+  fi
+
+  # ===== Network check =====
+  echo ""
+  echo "Checking network..."
+
+  if ping -c 1 8.8.8.8 >/dev/null 2>&1; then
+    echo " ✔ Network reachable"
+  else
+    echo " ⚠ Network issues detected"
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  echo ""
+
+  # ===== Summary =====
+  if [ "$ISSUES" -gt 0 ]; then
+    echo "Zyphor Doctor: ⚠ SCAN COMPLETE - $ISSUES issue(s) found"
+    echo "Run: sudo zyphor doctor fix"
+  else
+    echo "Zyphor Doctor: ✔ SYSTEM HEALTHY"
+  fi
+
+  echo ""
+}
