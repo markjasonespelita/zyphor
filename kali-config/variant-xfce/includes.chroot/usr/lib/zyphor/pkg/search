@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# zyphor pkg search <keyword>
+
+zyphor_pkg_search() {
+
+  KEYWORD="$3"
+
+  # ===== Validate input =====
+  if [ -z "$KEYWORD" ]; then
+    echo ""
+    echo "Zyphor: ✖ Missing search keyword"
+    echo "Usage: zyphor pkg search <keyword>"
+    echo ""
+    return 1
+  fi
+
+  echo ""
+  echo "Zyphor: Searching for '$KEYWORD'..."
+  echo ""
+
+  # ===== Search packages =====
+  RESULTS=$(apt-cache search "$KEYWORD")
+
+  # ===== Check results =====
+  if [ -z "$RESULTS" ]; then
+    echo "Zyphor: ⚠ No packages found for '$KEYWORD'"
+    echo ""
+    return 0
+  fi
+
+  # ===== Display clean output =====
+  echo "$RESULTS" | while read -r line; do
+    PKG_NAME=$(echo "$line" | cut -d' ' -f1)
+    DESC=$(echo "$line" | cut -d' ' -f2-)
+
+    printf " - %-25s %s\n" "$PKG_NAME" "$DESC"
+  done
+
+  echo ""
+  echo "Zyphor: ✔ Search complete"
+  echo ""
+}

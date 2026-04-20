@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# zyphor system clean
+
+zyphor_system_clean() {
+
+  # ===== Check root =====
+  if [ "$EUID" -ne 0 ]; then
+    echo ""
+    echo "Zyphor: ⚠ This action requires root privileges"
+    echo "Try: sudo zyphor system clean"
+    echo ""
+    return 1
+  fi
+
+  echo ""
+  echo "Zyphor: Starting system cleanup..."
+
+  # ===== Show disk usage before =====
+  BEFORE=$(df / | awk 'NR==2 {print $4}')
+
+  # ===== Clean package cache =====
+  echo "Zyphor: Cleaning package cache..."
+  apt clean
+
+  # ===== Remove unused packages =====
+  echo "Zyphor: Removing unused packages..."
+  apt autoremove -y
+
+  # ===== Remove partial packages =====
+  echo "Zyphor: Removing residual config files..."
+  dpkg -l | awk '/^rc/ {print $2}' | xargs -r apt purge -y
+
+  # ===== Clean thumbnail cache (user-level) =====
+  if [ -d "$HOME/.cache/thumbnails" ]; then
+    echo "Zyphor: Clearing thumbnail cache..."
+    rm -rf "$HOME/.cache/thumbnails/"*
+  fi
+
+  # ===== Show disk usage after =====
+  AFTER=$(df / | awk 'NR==2 {print $4}')
+
+  # ===== Calculate freed space =====
+  FREED=$((AFTER - BEFORE))
+
+  echo ""
+  echo "Zyphor: ✔ CLEAN COMPLETE"
+  echo "Space freed: $FREED KB"
+  echo ""
+}

@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# zyphor help (core)
+
+help() {
+
+  echo ""
+  echo "=================================="
+  echo "          ZYPHOR OS CLI"
+  echo "=================================="
+  echo ""
+
+  # ================= SYSTEM =================
+  echo "SYSTEM"
+  echo "----------------------------------"
+  printf "  %-30s %s\n" "system upgrade" "Upgrade all system packages"
+  printf "  %-30s %s\n" "system clean"   "Clean system cache & unused packages"
+  echo ""
+
+  # ================= PACKAGE =================
+  echo "PACKAGE"
+  echo "----------------------------------"
+  printf "  %-30s %s\n" "pkg install <pkg>" "Install a package"
+  printf "  %-30s %s\n" "pkg remove <pkg>"  "Remove a package"
+  printf "  %-30s %s\n" "pkg search <key>"  "Search packages"
+  printf "  %-30s %s\n" "pkg list"         "List installed packages"
+  echo ""
+
+  # ================= SERVICE =================
+  echo "SERVICE"
+  echo "----------------------------------"
+  printf "  %-30s %s\n" "service list"    "List all services"
+  printf "  %-30s %s\n" "service start"   "Start a service"
+  printf "  %-30s %s\n" "service stop"    "Stop a service"
+  printf "  %-30s %s\n" "service restart" "Restart a service"
+  printf "  %-30s %s\n" "service status"  "Show service status"
+  echo ""
+
+  # ================= DOCTOR =================
+  echo "DOCTOR"
+  echo "----------------------------------"
+  printf "  %-30s %s\n" "doctor scan"   "Scan system for issues"
+  printf "  %-30s %s\n" "doctor fix"    "Fix detected issues"
+  printf "  %-30s %s\n" "doctor report" "Generate system report"
+  echo ""
+
+  # ================= CORE =================
+  echo "CORE"
+  echo "----------------------------------"
+  printf "  %-30s %s\n" "help"    "Show this help menu"
+  printf "  %-30s %s\n" "version" "Show Zyphor OS version"
+  echo ""
+
+  # ================= EXAMPLES =================
+  echo "EXAMPLES"
+  echo "----------------------------------"
+  echo "  zyphor system upgrade"
+  echo "  zyphor pkg install nginx"
+  echo "  zyphor service restart ssh"
+  echo "  zyphor doctor scan"
+  echo ""
+
+  echo "=================================="
+  echo ""
+}

@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# zyphor pkg install <package-name>
+
+zyphor_pkg_install() {
+  PKG="$3"
+
+  # ===== Validate input =====
+  if [ -z "$PKG" ]; then
+    echo ""
+    echo "Zyphor: ✖ Missing package name"
+    echo "Usage: zyphor pkg install <package>"
+    echo ""
+    return 1
+  fi
+
+  # ===== Check root =====
+  if [ "$EUID" -ne 0 ]; then
+    echo ""
+    echo "Zyphor: ⚠ This action requires root privileges"
+    echo "Try: sudo zyphor pkg install $PKG"
+    echo ""
+    return 1
+  fi
+
+  # ===== Check if already installed =====
+  if dpkg -l | grep -q "^ii  $PKG "; then
+    echo ""
+    echo "Zyphor: ⚠ Package '$PKG' is already installed"
+    echo ""
+    return 0
+  fi
+
+  # ===== Update package list (silent + faster UX) =====
+  echo ""
+  echo "Zyphor: Updating package list..."
+  apt update -qq
+
+  # ===== Install package =====
+  echo "Zyphor: Installing '$PKG'..."
+  if apt install -y "$PKG"; then
+    echo ""
+    echo "Zyphor: ✔ SUCCESS"
+    echo "Package '$PKG' installed successfully."
+    echo ""
+  else
+    echo ""
+    echo "Zyphor: ✖ FAILED"
+    echo "Could not install '$PKG'. Check package name or network."
+    echo ""
+    return 1
+  fi
+}

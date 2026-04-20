@@ -1,0 +1,8 @@
+#!/bin/bash
+
+error() {
+    echo ""
+    echo "Zyphor OS: ✖ Unknown command '$1'"
+    echo "Run 'zyphor help' to see available commands."
+    echo ""
+}

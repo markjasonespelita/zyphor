@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# zyphor pkg list
+
+zyphor_pkg_list() {
+
+  echo ""
+  echo "Zyphor: Fetching installed packages..."
+  echo ""
+
+  # ===== Get installed packages =====
+  PKGS=$(dpkg -l | awk '/^ii/ {print $2}')
+
+  # ===== Check if empty (edge case) =====
+  if [ -z "$PKGS" ]; then
+    echo "Zyphor: ⚠ No installed packages found"
+    echo ""
+    return 0
+  fi
+
+  # ===== Display nicely =====
+  COUNT=0
+  for pkg in $PKGS; do
+    printf " - %s\n" "$pkg"
+    COUNT=$((COUNT + 1))
+  done
+
+  echo ""
+  echo "Zyphor: ✔ TOTAL PACKAGES: $COUNT"
+  echo ""
+}

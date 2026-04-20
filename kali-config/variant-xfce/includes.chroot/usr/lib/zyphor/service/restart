@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# zyphor service restart <service>
+
+zyphor_service_restart() {
+
+  SERVICE="$3"
+
+  if [ -z "$SERVICE" ]; then
+    echo ""
+    echo "Zyphor: ✖ Missing service name"
+    echo "Usage: zyphor service restart <service>"
+    echo ""
+    return 1
+  fi
+
+  if [ "$EUID" -ne 0 ]; then
+    echo ""
+    echo "Zyphor: ⚠ Requires root privileges"
+    echo "Try: sudo zyphor service restart $SERVICE"
+    echo ""
+    return 1
+  fi
+
+  echo ""
+  echo "Zyphor: Restarting '$SERVICE'..."
+
+  if systemctl restart "$SERVICE"; then
+    echo "Zyphor: ✔ '$SERVICE' restarted successfully"
+  else
+    echo "Zyphor: ✖ Failed to restart '$SERVICE'"
+  fi
+
+  echo ""
+}

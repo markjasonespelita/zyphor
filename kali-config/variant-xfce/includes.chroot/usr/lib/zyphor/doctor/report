@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# zyphor doctor report
+
+zyphor_doctor_report() {
+
+  REPORT_FILE="/tmp/zyphor_doctor_report.txt"
+
+  echo ""
+  echo "Zyphor Doctor: Generating system report..."
+  echo ""
+
+  {
+    echo "=============================="
+    echo "      ZYPHOR SYSTEM REPORT"
+    echo "=============================="
+    echo ""
+
+    # ===== Date =====
+    echo "Date: $(date)"
+    echo ""
+
+    # ===== OS =====
+    if [ -f /etc/os-release ]; then
+      . /etc/os-release
+      echo "OS: $PRETTY_NAME"
+      echo "ID: $ID"
+      echo "Base: $ID_LIKE"
+    fi
+
+    echo ""
+
+    # ===== Kernel =====
+    echo "Kernel: $(uname -r)"
+    echo "Architecture: $(uname -m)"
+    echo ""
+
+    # ===== Uptime =====
+    echo "Uptime: $(uptime -p)"
+    echo ""
+
+    # ===== CPU =====
+    CPU=$(grep -m 1 "model name" /proc/cpuinfo | cut -d: -f2 | xargs)
+    echo "CPU: $CPU"
+
+    # ===== Memory =====
+    MEM_TOTAL=$(free -m | awk '/Mem:/ {print $2}')
+    MEM_USED=$(free -m | awk '/Mem:/ {print $3}')
+    echo "Memory: ${MEM_USED}MB / ${MEM_TOTAL}MB"
+
+    # ===== Disk =====
+    echo "Disk (/): $(df -h / | awk 'NR==2 {print $3 " / " $2 " (" $5 ")"}')"
+
+    # ===== Packages =====
+    echo "Installed Packages: $(dpkg -l | grep '^ii' | wc -l)"
+
+    # ===== Network =====
+    IP=$(hostname -I 2>/dev/null | awk '{print $1}')
+    echo "Local IP: ${IP:-N/A}"
+
+    echo ""
+
+    # ===== Basic health flags =====
+    echo "SYSTEM FLAGS:"
+    
+    if dpkg --audit >/dev/null 2>&1; then
+      echo " - Package system: OK"
+    else
+      echo " - Package system: ISSUES DETECTED"
+    fi
+
+    if ping -c 1 8.8.8.8 >/dev/null 2>&1; then
+      echo " - Network: OK"
+    else
+      echo " - Network: FAILED"
+    fi
+
+    echo ""
+    echo "=============================="
+    echo "END OF REPORT"
+    echo "=============================="
+
+  } > "$REPORT_FILE"
+
+  echo "Zyphor Doctor: ✔ Report saved to $REPORT_FILE"
+  echo "View with: cat $REPORT_FILE"
+  echo ""
+}

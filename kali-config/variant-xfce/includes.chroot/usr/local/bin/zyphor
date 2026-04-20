@@ -1,121 +1,78 @@
 #!/bin/bash
 
-# ===== Zyphor OS Command Registry =====
-# Format:
-# command_name|description
+# ================= CORE =================
+source /usr/lib/zyphor/core/help
+source /usr/lib/zyphor/core/version
+source /usr/lib/zyphor/core/error
 
-build_version='v1.0.0 Beta.'
+CATEGORY="$1"
+ACTION="$2"
 
-COMMANDS=(
-  "upgrade-everything|Upgrade all system packages to latest versions"
-  "clean-everything|Remove unused packages and clean cache"
-  "install|Install a package (usage: zyphor install <package-name>)"
-  "help|Show available Zyphor commands"
-  "remove|Remove a package (usage: zyphor remove <package-name>)"
-  "version|Dispay latest Zyphor OS build version"
-)
+case "$CATEGORY" in
 
-# ===== Functions =====
+  # ================= PKG =================
+  pkg)
+    source /usr/lib/zyphor/pkg/install
+    source /usr/lib/zyphor/pkg/remove
+    source /usr/lib/zyphor/pkg/list
+    source /usr/lib/zyphor/pkg/search
 
-display_version() {
-  echo ""
-  echo "Zyphor OS Build Version $build_version"
-  echo ""
-}
-
-remove_package() {
-  if [ -z "$2" ]; then
-    echo "Zyphor OS: ✖ ERROR"
-    echo "Usage: zyphor remove <package-name>"
-    exit 1
-  fi
-
-  apt remove -y "$2"
-
-  echo ""
-  echo "Zyphor OS: ✔ SUCCESS"
-  echo "Package '$2' removed."
-  echo ""
-}
-
-upgrade_everything() {
-  apt update &&
-  apt full-upgrade -y &&
-  apt upgrade -y &&
-  apt autoremove -y
-
-  echo ""
-  echo "Zyphor OS: ✔ SUCCESS"
-  echo "System fully upgraded and optimized."
-  echo ""
-}
-
-clean_everything() {
-  apt autoremove -y &&
-  apt clean
-
-  echo ""
-  echo "Zyphor OS: ✔ SUCCESS"
-  echo "System cleaned and unnecessary files removed."
-  echo ""
-}
-
-install_package() {
-  if [ -z "$2" ]; then
-    echo "Zyphor OS: ✖ ERROR"
-    echo "Usage: zyphor install <package-name>"
-    exit 1
-  fi
-
-  apt update &&
-  apt install -y "$2"
-
-  echo ""
-  echo "Zyphor OS: ✔ DONE"
-  echo "Package '$2' done."
-  echo ""
-}
-
-show_help() {
-  echo ""
-  echo "Zyphor OS Command List"
-  echo "----------------------"
-
-  for cmd in "${COMMANDS[@]}"; do
-    NAME=$(echo "$cmd" | cut -d '|' -f1)
-    DESC=$(echo "$cmd" | cut -d '|' -f2)
-
-    printf "  %-20s %s\n" "$NAME" "$DESC"
-  done
-
-  echo ""
-}
-
-# ===== Command Router =====
-
-case "$1" in
-  version)
-    display_version
+    case "$ACTION" in
+      install) zyphor_pkg_install "$@" ;;
+      remove)  zyphor_pkg_remove "$@" ;;
+      list)    zyphor_pkg_list "$@" ;;
+      search)  zyphor_pkg_search "$@" ;;
+      *) error "pkg $ACTION" ;;
+    esac
     ;;
-  remove)
-    remove_package "$@"
+
+  # ================= SERVICE =================
+  service)
+    source /usr/lib/zyphor/service/list
+    source /usr/lib/zyphor/service/start
+    source /usr/lib/zyphor/service/stop
+    source /usr/lib/zyphor/service/restart
+    source /usr/lib/zyphor/service/status
+
+    case "$ACTION" in
+      list)    zyphor_service_list "$@" ;;
+      start)   zyphor_service_start "$@" ;;
+      stop)    zyphor_service_stop "$@" ;;
+      restart) zyphor_service_restart "$@" ;;
+      status)  zyphor_service_status "$@" ;;
+      *) error "service $ACTION" ;;
+    esac
     ;;
-  upgrade-everything)
-    upgrade_everything
+
+  # ================= DOCTOR =================
+  doctor)
+    source /usr/lib/zyphor/doctor/fix
+    source /usr/lib/zyphor/doctor/report
+    source /usr/lib/zyphor/doctor/scan
+
+    case "$ACTION" in
+      fix)    zyphor_doctor_fix "$@" ;;
+      report) zyphor_doctor_report "$@" ;;
+      scan)   zyphor_doctor_scan "$@" ;;
+      *) error "doctor $ACTION" ;;
+    esac
     ;;
-  clean-everything)
-    clean_everything
+
+  # ================= SYSTEM =================
+  system)
+    source /usr/lib/zyphor/system/upgrade
+    source /usr/lib/zyphor/system/clean
+
+    case "$ACTION" in
+      upgrade) zyphor_system_upgrade ;;
+      clean)   zyphor_system_clean ;;
+      *) error "system $ACTION" ;;
+    esac
     ;;
-  install)
-    install_package "$@"
-    ;;
-  help|"")
-    show_help
-    ;;
-  *)
-    echo ""
-    echo "Zyphor OS: ✖ Unknown command '$1'"
-    echo "Run 'zyphor help' to see available commands."
-    echo ""
-    ;;
+
+  # ================= META =================
+  version) version ;;
+  help|"") help ;;
+  *) error "$CATEGORY" ;;
+
 esac

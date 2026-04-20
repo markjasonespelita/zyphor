@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# zyphor service status <service>
+
+zyphor_service_status() {
+
+  SERVICE="$3"
+
+  if [ -z "$SERVICE" ]; then
+    echo ""
+    echo "Zyphor: ✖ Missing service name"
+    echo "Usage: zyphor service status <service>"
+    echo ""
+    return 1
+  fi
+
+  echo ""
+  echo "Zyphor: Checking status of '$SERVICE'..."
+  echo ""
+
+  systemctl status "$SERVICE"
+
+  echo ""
+}
