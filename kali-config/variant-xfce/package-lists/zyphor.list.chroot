@@ -3,3 +3,6 @@ kali-desktop-live
 kali-desktop-xfce
 
 fastfetch
+
+curl
+jq
