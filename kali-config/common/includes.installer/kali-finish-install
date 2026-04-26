@@ -14,55 +14,48 @@
 # Zyphor OS Custom Post Install Configurations (1)
 
 configure_zyphor() {
-
     set -e
 
-    echo "INFO: Applying Zyphor OS customizations"
+    echo "INFO: Applying Zyphor OS customizations..."
 
-    # For lightdm gtk greeter - create /desktop-base folder inside /usr/share/images/[desktop-base]
-
+    # ── Wallpapers & Desktop Base ──────────────────────────────────────────────
+    echo "INFO: Setting up desktop wallpapers..."
     mkdir -p /usr/share/images/desktop-base
-
-    # create symlinks of the wallpapers and default desktop wallpapers
-
-    ln -sf /usr/share/backgrounds/backgrounds.png /usr/share/images/desktop-base/default
-
+    ln -sf /usr/share/backgrounds/backgrounds.png  /usr/share/images/desktop-base/default
     ln -sf /usr/share/backgrounds/backgrounds2.png /usr/share/images/desktop-base/default-2
-
     ln -sf /usr/share/backgrounds/backgrounds3.png /usr/share/images/desktop-base/default-3
-
     ln -sf /usr/share/backgrounds/backgrounds4.png /usr/share/images/desktop-base/default-4
 
-    # lightdm .face symlink
-
+    # ── LightDM Face Icon ──────────────────────────────────────────────────────
+    echo "INFO: Configuring LightDM face icon..."
     ln -sf /etc/skel/.face /etc/skel/.face.icon
 
-    # download zyphor-cli
-
-    apt install zyphor-cli -y
-
-    # Zyphor Custom Commands configurations - allow custom commands to be executable
-
-    chmod +x /usr/local/bin/zyphor
-
-    # For GRUB Bootloader - create a folder /boot/zyphor
-
+    # ── GRUB Bootloader ────────────────────────────────────────────────────────
+    echo "INFO: Setting up GRUB bootloader splash..."
     mkdir -p /boot/zyphor
-
-    # copy main GRUB Bootloader splash screen
-
-    cp /usr/share/backgrounds/zyphor-grub-bootloader-screensavers/grub-bootloader-screen-saver.png /boot/zyphor
-
-    # rename default GRUB Bootloader Image
-
-    mv /boot/zyphor/grub-bootloader-screen-saver.png /boot/zyphor/splash.png
-
-    # update GRUB Bootloader Settings
-
+    cp /usr/share/backgrounds/zyphor-grub-bootloader-screensavers/grub-bootloader-screen-saver.png \
+       /boot/zyphor/splash.png
     update-grub
 
-    # plymouth - to be continue...
+    # ── XFCE Panel - Redmond 7 + Zyphor Icon ──────────────────────────────────
+    echo "INFO: Applying Redmond 7 panel profile and Zyphor icon..."
+    xfce4-panel-profiles load "/usr/share/xfce4-panel-profiles/layouts/Redmond 7.tar.bz2"
+    cp /etc/skel/.face /usr/share/pixmaps/zyphor-logo.png
+    find ~/.config/xfce4/panel/ -name "*.rc" \
+        | xargs sed -i 's|^button-icon=.*|button-icon=/usr/share/pixmaps/zyphor-logo.png|'
+    gtk-update-icon-cache /usr/share/icons/hicolor/ -f -t
+    xfce4-panel --restart
 
+    # ── Zyphor CLI ─────────────────────────────────────────────────────────────
+    echo "INFO: Installing Zyphor CLI..."
+    apt install -y zyphor-cli
+    chmod +x /usr/local/bin/zyphor
+
+    # ── Plymouth (TODO) ────────────────────────────────────────────────────────
+    # echo "INFO: Configuring Plymouth theme..."
+    # plymouth-set-default-theme zyphor --rebuild-initrd
+
+    echo "INFO: Zyphor OS customizations applied successfully."
 }
 
 # End Of Zyphor OS Custom Post Install Configurations (2)
