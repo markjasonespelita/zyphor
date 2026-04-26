@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/markjasonespelita/zyphor_os/compare/v1.4.0...v1.4.1) (2026-04-26)
+
+
+### Bug Fixes
+
+* creating/fix the .xprofile and firstboot command and modifiying the kali finish install to adopt to the new Redmond 7 changes. ([39ea056](https://github.com/markjasonespelita/zyphor_os/commit/39ea056d24359cbf0daf0426bf4f6c8558265d07))
+
 # [1.4.0](https://github.com/markjasonespelita/zyphor_os/compare/v1.3.1...v1.4.0) (2026-04-26)
 
 
