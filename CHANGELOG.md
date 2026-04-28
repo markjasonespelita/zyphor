@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/markjasonespelita/zyphor_os/compare/v1.4.1...v1.5.0) (2026-04-28)
+
+
+### Features
+
+* added php8.4 utils in the packages list and added a ip forwarding configuration on the kali-finish-install. ([1ac2c9e](https://github.com/markjasonespelita/zyphor_os/commit/1ac2c9ef60e7349c0473d2f9e297495affeebeb5))
+
 ## [1.4.1](https://github.com/markjasonespelita/zyphor_os/compare/v1.4.0...v1.4.1) (2026-04-26)
 
 
