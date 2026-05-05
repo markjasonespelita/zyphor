@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/markjasonespelita/zyphor_os/compare/v1.6.1...v1.7.0) (2026-05-05)
+
+
+### Features
+
+* renamed kali-config to zyphor-os-config, and added an /etc/issue file for tty configuration hostname. ([0a5526e](https://github.com/markjasonespelita/zyphor_os/commit/0a5526e52cbd6dfdf88cd40d2067d1d1951283a1))
+
 ## [1.6.1](https://github.com/markjasonespelita/zyphor_os/compare/v1.6.0...v1.6.1) (2026-04-29)
 
 
