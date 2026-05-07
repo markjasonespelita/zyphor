@@ -4,7 +4,7 @@
 
 Download the latest **Zyphor OS ISO** and get started in minutes.
 
-👉 **[Click Here To Download Zyphor Operating System ISO (v1.6.1 Stable.)](https://drive.google.com/uc?export=download&id=1olS90sAzq7IVx-10DktQhX4LI3Ef9MK5)**  
+👉 **[Click Here To Download Zyphor Operating System ISO (v1.7.0 Stable.)](https://drive.google.com/uc?export=download&id=1nk0Apmi6Rkx9Y7pp10a3eHIx0igMps7i)** 
 > 📦 Hosted on Google Drive  
 > 💿 File Type: ISO Image  
 
