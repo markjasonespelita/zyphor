@@ -4,7 +4,7 @@
 
 Download the latest **Zyphor OS ISO** and get started in minutes.
 
-👉 **[Click Here To Download Zyphor Operating System ISO (v1.7.0 Stable.)](https://drive.google.com/uc?export=download&id=1nk0Apmi6Rkx9Y7pp10a3eHIx0igMps7i)**  
+👉 **[Click Here To Download Zyphor Operating System ISO (v1.6.1 Stable.)](https://drive.google.com/uc?export=download&id=1olS90sAzq7IVx-10DktQhX4LI3Ef9MK5)**  
 > 📦 Hosted on Google Drive  
 > 💿 File Type: ISO Image  
 
@@ -20,6 +20,21 @@ zyphor help
 **Email:** markjasonespelita@gmail.com  
 **Contact:** 09978972884 | 09203454006  
 **Date Created:** March 30, 2026
+
+---
+**Other projects under Zyphor OS**
+
+Zyphor Server - https://github.com/markjasonespelita/zyphor_server
+
+Zyphor Minimal - https://github.com/markjasonespelita/zyphor_minimal
+
+Zyphor Packages - https://github.com/markjasonespelita/zyphor_packages
+
+Zyphor Repo - https://github.com/markjasonespelita/zyphor_repo
+
+---
+
+
 
 # Introduction
 
